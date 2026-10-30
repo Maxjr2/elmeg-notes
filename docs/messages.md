@@ -1,8 +1,11 @@
 # Messages
 
+!!! info "Evidence tags"
+    ✅ tested in emulation · 📖 read from code or tables, not exercised · 🔶 inferred · ❓ unknown · 🔌 hardware-verified (nothing yet). See the [overview](index.md#evidence-tags).
+
 ## PBX to phone
 
-Order is the order on the wire. The table lists the elements a message *can* carry (CONFIRMED from the PBX's encoder tables); which ones appear depends on the message. Codeset 7 elements follow the `97` shift.
+Order is the order on the wire. The table lists the elements a message *can* carry (📖 Read from the PBX's encoder tables); which ones appear depends on the message. Codeset 7 elements follow the `97` shift.
 
 | Type | Name | Codeset 0 | Codeset 7 |
 |---|---|---|---|
@@ -33,31 +36,30 @@ Order is the order on the wire. The table lists the elements a message *can* car
 
 ## Message types the phone recognises
 
-The phone validates incoming message types against a table: `62 05 01 02 07 0f 0d 45 4d 5a 7b 6e 7d 75 03 20 28 30 33 37 2d 21 2e 22 46 4e 60 79 64`. In names: FACILITY, SETUP, ALERTING, CALL PROCEEDING, CONNECT, CONNECT ACK, SETUP ACK, DISCONNECT, RELEASE, RELEASE COMPLETE, INFORMATION, NOTIFY, STATUS, STATUS ENQUIRY, PROGRESS, USER INFORMATION, HOLD ACK, HOLD REJECT, RETRIEVE ACK, RETRIEVE REJECT, SUSPEND ACK, SUSPEND REJECT, RESUME ACK, RESUME REJECT, RESTART, RESTART ACK, SEGMENT, CONGESTION CONTROL, REGISTER. (INFERRED, code reading of the phone.)
+The phone validates incoming message types against a table: `62 05 01 02 07 0f 0d 45 4d 5a 7b 6e 7d 75 03 20 28 30 33 37 2d 21 2e 22 46 4e 60 79 64`. In names: FACILITY, SETUP, ALERTING, CALL PROCEEDING, CONNECT, CONNECT ACK, SETUP ACK, DISCONNECT, RELEASE, RELEASE COMPLETE, INFORMATION, NOTIFY, STATUS, STATUS ENQUIRY, PROGRESS, USER INFORMATION, HOLD ACK, HOLD REJECT, RETRIEVE ACK, RETRIEVE REJECT, SUSPEND ACK, SUSPEND REJECT, RESUME ACK, RESUME REJECT, RESTART, RESTART ACK, SEGMENT, CONGESTION CONTROL, REGISTER. (📖 Read, code reading of the phone.)
 
 ## Phone to PBX
 
-The phone can send these messages (INFERRED from static reading of the phone's message builders; the ones marked CONFIRMED were seen in emulation).
+The phone can send these messages (📖 Read from the phone's message builders; the ones marked ✅ were seen in emulation).
 
 | Type | Name | Notes |
 |---|---|---|
-| `05` | SETUP | two variants. Outgoing call: `04 03 80 90 a3`, `18 01 83`, `7d 02 91 81`, `7e 01 04`, no called number. CONFIRMED |
-| `01` | ALERTING | answer to an incoming SETUP. CONFIRMED |
-| `07` | CONNECT | handset lifted. CONFIRMED |
+| `05` | SETUP | two variants. Outgoing call: `04 03 80 90 a3`, `18 01 83`, `7d 02 91 81`, `7e 01 04`, no called number. ✅ Tested |
+| `01` | ALERTING | answer to an incoming SETUP. ✅ Tested |
+| `07` | CONNECT | handset lifted. ✅ Tested |
 | `0f` | CONNECT ACKNOWLEDGE | |
-| `45` | DISCONNECT | `08 02 80 90`. CONFIRMED |
-| `4d` | RELEASE | CONFIRMED |
-| `5a` | RELEASE COMPLETE | with cause `08 02 80 d1` when the call reference is unknown. CONFIRMED |
-| `7b` | INFORMATION | three variants: one digit as called party number (`70 02 81 <digit>`, CONFIRMED); variants with codeset 7 elements `06`, `03`, `05` for function keys (INFERRED) |
-| `7d` | STATUS | with call state. CONFIRMED |
-| `75` | STATUS ENQUIRY | used for identification at registration. CONFIRMED |
-| `25`, `26` | SUSPEND, RESUME | with call identity (INFERRED) |
-| `24`, `31` | HOLD, RETRIEVE | (INFERRED) |
-| `64` | REGISTER | five variants, each with facility `1c 02 95 92`, then `97` and codeset 7 elements `02` and `21` (INFERRED) |
-| `62` | FACILITY | fourteen builders, supplementary services, content UNKNOWN |
+| `45` | DISCONNECT | `08 02 80 90`. ✅ Tested |
+| `4d` | RELEASE | ✅ Tested |
+| `5a` | RELEASE COMPLETE | with cause `08 02 80 d1` when the call reference is unknown. ✅ Tested |
+| `7b` | INFORMATION | three variants: one digit as called party number (`70 02 81 <digit>`, ✅ Tested); variants with codeset 7 elements `06`, `03`, `05` for function keys (📖 Read) |
+| `7d` | STATUS | with call state. ✅ Tested |
+| `75` | STATUS ENQUIRY | used for identification at registration. ✅ Tested |
+| `25`, `26` | SUSPEND, RESUME | with call identity (📖 Read) |
+| `24`, `31` | HOLD, RETRIEVE | (📖 Read) |
+| `64` | REGISTER | five variants, each with facility `1c 02 95 92`, then `97` and codeset 7 elements `02` and `21` (📖 Read) |
+| `62` | FACILITY | fourteen builders, supplementary services, content ❓ Unknown |
 
-There is no builder for CALL PROCEEDING, SETUP ACKNOWLEDGE, PROGRESS or NOTIFY, as expected for a terminal.
-RESTART and RESTART ACKNOWLEDGE are accepted and answered.
+There is no builder for CALL PROCEEDING, SETUP ACKNOWLEDGE, PROGRESS or NOTIFY, as expected for a terminal. RESTART and RESTART ACKNOWLEDGE are accepted and answered. (📖 Read.)
 
 ## Cause values the phone uses
 

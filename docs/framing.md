@@ -1,5 +1,8 @@
 # Layer 3 framing (Q.931)
 
+!!! info "Evidence tags"
+    ✅ tested in emulation · 📖 read from code or tables, not exercised · 🔶 inferred · ❓ unknown · 🔌 hardware-verified (nothing yet). See the [overview](index.md#evidence-tags).
+
 ```
 08 | cr_len | call reference | message type | information elements ...
 ```
@@ -20,7 +23,7 @@ The flag is **0 on messages sent by the side that originated the call** and **1 
 | Originated by the network | flag 0 (`01`) | flag 1 (`81`) |
 | Originated by the phone | flag 1 (`81`) | flag 0 (`01`) |
 
-A message with the wrong flag is treated as belonging to an unknown call. The phone answers RELEASE COMPLETE with cause #81 (`08 02 80 d1`). CONFIRMED.
+A message with the wrong flag is treated as belonging to an unknown call. The phone answers RELEASE COMPLETE with cause #81 (`08 02 80 d1`). ✅ Tested.
 
 ## Information elements
 
@@ -45,8 +48,8 @@ Codeset 0 elements are standard Q.931:
 
 ## Codeset shift
 
-`97` is a **locking shift to codeset 7**. Every element after it, up to the end of the message, is codeset 7. CONFIRMED.
-The phone also decodes codeset 5 and 6 (one element, id `1a`, content UNKNOWN). Codeset 7 is the one that matters, see [Codeset 7](codeset7.md).
+`97` is a **locking shift to codeset 7**. Every element after it, up to the end of the message, is codeset 7. ✅ Tested.
+The phone also decodes codeset 5 and 6 (one element, id `1a`, content ❓ Unknown). Codeset 7 is the one that matters, see [Codeset 7](codeset7.md).
 
 ## Frequently used elements
 

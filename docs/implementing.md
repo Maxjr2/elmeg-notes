@@ -1,5 +1,8 @@
 # Implementing a PBX for the CS410
 
+!!! info "Evidence tags"
+    ✅ tested in emulation · 📖 read from code or tables, not exercised · 🔶 inferred · ❓ unknown · 🔌 hardware-verified (nothing yet). See the [overview](index.md#evidence-tags).
+
 A checklist for building the network side. Everything here is from the notes; nothing was tested against real hardware.
 
 ## 1. Layer 1

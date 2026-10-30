@@ -1,5 +1,8 @@
 # Registration
 
+!!! info "Evidence tags"
+    ✅ tested in emulation · 📖 read from code or tables, not exercised · 🔶 inferred · ❓ unknown · 🔌 hardware-verified (nothing yet). See the [overview](index.md#evidence-tags).
+
 After the data link comes up, and again after **every** link re-establishment, the phone identifies itself. Until the PBX replies, the phone repeats the message periodically.
 
 ```mermaid
@@ -13,7 +16,7 @@ sequenceDiagram
 
 ## Phone to PBX
 
-Message type `75` (the standard STATUS ENQUIRY value, used here for identification), call reference `01`, flag 0. CONFIRMED in emulation:
+Message type `75` (the standard STATUS ENQUIRY value, used here for identification), call reference `01`, flag 0. ✅ Tested:
 
 ```
 08 01 01 75
@@ -27,8 +30,8 @@ Message type `75` (the standard STATUS ENQUIRY value, used here for identificati
 ```
 
 - The first message is the long form above. Retries carry only `97 01 08 "PS130357"`.
-- `PS130357` identifies the terminal class. The PBX distinguishes classes by this string; other strings seen in the PBX tables are `US050561`, `UR230560`, `DTDECT01` and `DTAG0104` (other terminal types). INFERRED.
-- The octets `06` and `11` in front of the version and date strings are their lengths (6 and 17 characters). The element ids that go with them, and the other octets (`0f 37 ff ff 00 00`, `01 ff`, `12 ff ...`), are UNKNOWN.
+- `PS130357` identifies the terminal class. The PBX distinguishes classes by this string; other strings seen in the PBX tables are `US050561`, `UR230560`, `DTDECT01` and `DTAG0104` (other terminal types). 📖 Read from the PBX's tables, 🔶 meaning inferred.
+- The octets `06` and `11` in front of the version and date strings are their lengths (6 and 17 characters). The element ids that go with them, and the other octets (`0f 37 ff ff 00 00`, `01 ff`, `12 ff ...`), are ❓ Unknown.
 
 ## PBX to phone
 
@@ -43,7 +46,7 @@ A RELEASE COMPLETE using the phone's call reference with the flag set:
 26 02 82 80                       constant (optional in effect)
 ```
 
-CONFIRMED in emulation:
+✅ Tested:
 
 - the phone stops repeating, sets its clock from the date/time element and adds a *Tel. drctry* entry to its idle menu;
 - the reply must be type `5a`, must carry the call reference flag, and must contain codeset 7 element `01`;
@@ -58,7 +61,7 @@ A short time after any accepted reply the phone sends
 08 01 01 7d | 08 02 80 df | 14 01 00 | 97 02 00
 ```
 
-a STATUS for call reference 1 with cause 95, call state 0 (null) and an **empty** codeset 7 element `02`. It is sent regardless of what the reply contained, and the tests needed no answer to it. Meaning of the empty element: UNKNOWN (it is the system-phone data container, see [Codeset 7](codeset7.md)).
+a STATUS for call reference 1 with cause 95, call state 0 (null) and an **empty** codeset 7 element `02`. It is sent regardless of what the reply contained, and the tests needed no answer to it. Meaning of the empty element: ❓ Unknown (it is the system-phone data container, see [Codeset 7](codeset7.md)).
 
 ## Re-registration
 

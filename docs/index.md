@@ -38,15 +38,19 @@ The byte layouts of the PBX-to-phone elements are known, their meaning mostly is
 | [Implementing a PBX](implementing.md) | Checklist and pitfalls |
 | [Open questions](open-questions.md) | What is still unknown, how to help |
 
-## Status labels
+## Evidence tags
 
-| Label | Meaning |
-|---|---|
-| **CONFIRMED** | Reproduced against a software emulation of the phone, or read from message encoders |
-| **INFERRED** | Reasoned from the structure of messages or tables, not exercised |
-| **UNKNOWN** | Not decoded |
+Every claim in these notes carries one of these tags. **"Tested" means tested against a software emulation of the phone, not on real hardware.**
 
-All byte strings are hexadecimal. Nothing here has been tested on real hardware.
+| Tag | Meaning | How much to trust it |
+|---|---|---|
+| ✅ **Tested** | A test PBX sent or received exactly these bytes and the emulated phone behaved as described | High for the emulated phone, not yet checked on a real one |
+| 📖 **Read** | Read from the firmware's message tables or code; never run | Layouts are probably right, behaviour is untested |
+| 🔶 **Inferred** | Reasoned from structure, names or analogy | Treat as a hypothesis |
+| ❓ **Unknown** | Not decoded | None |
+| 🔌 **Hardware** | Verified on a real phone and PBX | **No claim has this tag yet** |
+
+All byte strings are hexadecimal.
 Corrections and captures are welcome, see [Open questions](open-questions.md).
 
 License: CC BY 4.0.

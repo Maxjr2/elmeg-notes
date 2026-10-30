@@ -1,7 +1,12 @@
 # Open questions
 
+!!! info "Evidence tags"
+    ✅ tested in emulation · 📖 read from code or tables, not exercised · 🔶 inferred · ❓ unknown · 🔌 hardware-verified (nothing yet). See the [overview](index.md#evidence-tags).
+
 ## Not known
 
+- **The telephone directory.** The *Tel. drctry* entry appears only after registration, which suggests the PBX supplies the entries. The request, the reply format and the key that opens it are all ❓ Unknown, see [Phone behaviour](phone-behaviour.md#directory-tel-drctry).
+- **Settings kept in the PBX.** Which *Configuration* and *Setting* values are stored in the PBX and how the phone reads and writes them.
 - **Meaning of the codeset 7 elements** (apart from `01`): key labels, lamps, directory data, ringer and display functions.
 - **FACILITY context.** What call reference or state makes the phone accept a system FACILITY.
 - **Phone's INFORMATION with codeset 7**: the code of each function key, and the exact content.

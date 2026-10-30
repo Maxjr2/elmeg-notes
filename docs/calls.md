@@ -1,5 +1,8 @@
 # Calls
 
+!!! info "Evidence tags"
+    ✅ tested in emulation · 📖 read from code or tables, not exercised · 🔶 inferred · ❓ unknown · 🔌 hardware-verified (nothing yet). See the [overview](index.md#evidence-tags).
+
 Plain telephony needs only standard DSS1 plus the [registration](registration.md) reply. Bytes below are I-frame information fields (layer 3), TEI 64.
 
 ## Incoming call (network to phone)
@@ -19,7 +22,7 @@ sequenceDiagram
   N->>P: RELEASE COMPLETE
 ```
 
-SETUP can be sent as an I-frame or as a broadcast UI frame (SAPI 0, TEI 127); the phone accepts both. CONFIRMED.
+SETUP can be sent as an I-frame or as a broadcast UI frame (SAPI 0, TEI 127); the phone accepts both. ✅ Tested.
 
 ```
 08 01 01 05                       SETUP, call reference 1, flag 0
@@ -38,7 +41,7 @@ To clear from the network send DISCONNECT with a cause, flag 0:
 08 01 01 45 08 02 80 90
 ```
 
-The phone returns `RELEASE` (`08 01 81 4d`) or `RELEASE COMPLETE`. If the network sets the flag wrong (`81`), the phone answers RELEASE COMPLETE with cause 81 and the call is not cleared. CONFIRMED.
+The phone returns `RELEASE` (`08 01 81 4d`) or `RELEASE COMPLETE`. If the network sets the flag wrong (`81`), the phone answers RELEASE COMPLETE with cause 81 and the call is not cleared. ✅ Tested.
 
 ## Outgoing call (phone to network)
 
@@ -58,7 +61,7 @@ sequenceDiagram
   P->>N: RELEASE COMPLETE
 ```
 
-Lifting the handset sends SETUP with **no called party number**, so the network must support overlap sending. CONFIRMED:
+Lifting the handset sends SETUP with **no called party number**, so the network must support overlap sending. ✅ Tested:
 
 ```
 08 01 01 05
@@ -83,8 +86,8 @@ Each key press then arrives as its own INFORMATION message with one digit, flag 
 
 The digits appear on the phone's display as they are dialled. The phone does not send a "number complete" marker: **the network must decide when dialling is finished** (digit timeout, a known numbering plan, or `#`).
 
-When the user hangs up the phone sends `08 01 01 45 08 02 80 90` (DISCONNECT); the network answers RELEASE and the phone sends RELEASE COMPLETE. CONFIRMED.
+When the user hangs up the phone sends `08 01 01 45 08 02 80 90` (DISCONNECT); the network answers RELEASE and the phone sends RELEASE COMPLETE. ✅ Tested.
 
 ## After dialling (not yet tested)
 
-From the phone's call-state tables (INFERRED): in the overlap-sending state it accepts ALERTING (moving to "call delivered"), CALL PROCEEDING (moving to "outgoing proceeding") and CONNECT (moving to "active"; it answers with CONNECT ACKNOWLEDGE). So the network should answer a completed number with CALL PROCEEDING and then ALERTING and CONNECT as the far end progresses. The B-channel audio itself is not part of the D-channel and was not tested.
+From the phone's call-state tables (📖 Read): in the overlap-sending state it accepts ALERTING (moving to "call delivered"), CALL PROCEEDING (moving to "outgoing proceeding") and CONNECT (moving to "active"; it answers with CONNECT ACKNOWLEDGE). So the network should answer a completed number with CALL PROCEEDING and then ALERTING and CONNECT as the far end progresses. The B-channel audio itself is not part of the D-channel and was not tested.
