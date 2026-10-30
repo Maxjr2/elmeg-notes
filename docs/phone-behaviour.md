@@ -28,9 +28,16 @@ Typing a code on the keypad (for example *Call-Parking* then `55`) shows the dig
 
 ## Directory (*Tel. drctry*)
 
-- ✅ **Tested:** the entry *Tel. drctry* is **not** on the idle screen before the PBX has accepted the registration. It appears as soon as the registration reply is accepted (it also appears in the *Program dial number* menu).
-- 🔶 **Inferred:** because the entry depends on the PBX, the directory contents probably live in the PBX and the phone fetches them over the system-phone channel (codeset 7, probably the data blob element `02`). This matches a recollection from a user of the phone that the names are not stored in the phone itself; that recollection is not verified.
-- ❓ **Unknown:** the request message and the format of the entries. In emulation none of the 22 function keys sent a directory request from the idle screen (only the two call-starting keys produced traffic), the key that opens the directory could not be identified, and no directory data was ever supplied. The answer needs a capture of a real PBX serving a CS410, see [Open questions](open-questions.md).
+The phone's directory is **stored in the phone**. Evidence (all ✅ Tested, in emulation):
+
+- The programming menu (*Functions*, *Program nos.*, *Program dial number*, *Tel. drctry*) offers "telephone book, 250 Entries avail., New". This works with no PBX registered and sends nothing on the D-channel.
+- Creating an entry works entirely inside the phone: name entry (*Input telephone book*, "Name>", multi-tap letters on the digit keys, a confirm key), then "Number>", confirm again. The counter drops to "249 Entries avail." and the entry menu then offers *Sp.ton. call*, *Info*, *New*, *delete*, *List*. No D-channel traffic occurs at any step.
+- The *Tel. drctry* line on the idle screen opens a search of this local book ("Make initial select.", "Name>"). With an empty book pressing it appears to do nothing, which is why a first test saw no effect. This also sends nothing to the PBX.
+- The entry is not written to the phone's small serial EEPROM; the phone uses its flash for it (the emulator does not store flash writes, so entries do not persist there). 🔶 Inferred from the phone's service menu entries *Flash* and *EEPROM*.
+
+What registration changes (✅ Tested): the idle *Tel. drctry* line and the *direct* entry of the *Program dial number* menu only exist after the PBX has accepted the registration. Why they depend on it is ❓ Unknown.
+
+So the phone's own directory cannot be supplied from the PBX side through anything found so far. The ICT PBX has a separate central telephone book (📖 Read: about 1000 entries and a second list, reached through its configuration interface); no path from it to the system phone was found. An earlier version of these notes guessed that the phone's directory comes from the PBX; the tests above do not support that.
 
 ## Settings stored in the PBX
 

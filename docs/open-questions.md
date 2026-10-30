@@ -5,7 +5,7 @@
 
 ## Not known
 
-- **The telephone directory.** The *Tel. drctry* entry appears only after registration, which suggests the PBX supplies the entries. The request, the reply format and the key that opens it are all ❓ Unknown, see [Phone behaviour](phone-behaviour.md#directory-tel-drctry).
+- **A PBX-served directory.** The phone's own 250-entry book is local (see [Phone behaviour](phone-behaviour.md#directory-tel-drctry)). Whether the system-phone channel can also show entries from the PBX's central book is ❓ Unknown; no request was ever seen.
 - **Settings kept in the PBX.** Which *Configuration* and *Setting* values are stored in the PBX and how the phone reads and writes them.
 - **Meaning of the codeset 7 elements** (apart from `01`): key labels, lamps, directory data, ringer and display functions.
 - **FACILITY context.** What call reference or state makes the phone accept a system FACILITY.
