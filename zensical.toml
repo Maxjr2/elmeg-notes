@@ -12,7 +12,15 @@ site_name = "CS410 protocol notes"
 
 nav = [
   { "Overview" = "index.md" },
-  { "Protocol" = "protocol.md" },
+  { "Link layer" = "link-layer.md" },
+  { "Framing" = "framing.md" },
+  { "Messages" = "messages.md" },
+  { "Registration" = "registration.md" },
+  { "Calls" = "calls.md" },
+  { "Codeset 7" = "codeset7.md" },
+  { "Phone behaviour" = "phone-behaviour.md" },
+  { "Implementing a PBX" = "implementing.md" },
+  { "Open questions" = "open-questions.md" },
 ]
 
 # extra_css = ["stylesheets/extra.css"]
