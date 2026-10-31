@@ -5,6 +5,10 @@
 
 The phone is a standard ISDN terminal on a basic-rate S0 bus. The PBX is the network side (NT). Layer 1 activation follows the normal ISDN procedure.
 
+## Layer 1 activation (PBX-observed)
+
+On a point-to-point S0 line in emulation, the network side requests activation as soon as it starts (it keeps sending INFO 2). The phone powers up, reports the activation request to its own firmware, answers with its activation request (INFO 3), and the line is active: the network side then sees "activated" and the phone sees the activated indication (INFO 4). Layer 2 only starts after that: the first frame from the network is an unacknowledged broadcast (see [Codeset 7](codeset7.md#broadcasts-pbx-observed)), then the phone's TEI request. ✅ Tested, PBX-observed.
+
 ## Addressing
 
 An address field has two octets: `SAPI<<2 | C/R<<1 | EA=0`, then `TEI<<1 | EA=1`.

@@ -53,6 +53,15 @@ A RELEASE COMPLETE using the phone's call reference with the flag set:
 - a header-only reply, a reply with the flag clear, or another message type (`7d` was tried) is ignored and the phone keeps repeating;
 - the cause location (`85` or `81`) and element `26` make no visible difference; the date/time element is optional.
 
+## Long and short form (PBX-observed)
+
+The original PBX treats the two forms of the phone's message differently:
+
+- the **short** form (`97 01 08 "PS130357"` only) gets the full reply above;
+- the **long** form (with version and date strings) gets only a bare RELEASE COMPLETE with cause 81 and no codeset 7 content, `08 01 81 5a 08 02 85 d1`, after which the phone retries (in the emulation the second attempt was again the long form, the third the short form).
+
+The phone accepts the full reply to either form (✅ Tested with the test PBX), so an implementation may answer both with the full reply; the original behaviour is the two-step one. ✅ Tested, PBX-observed. The PBX's full reply was byte-identical to the one shown above (date and time were zero because the PBX clock was not set).
+
 ## The STATUS that follows
 
 A short time after any accepted reply the phone sends

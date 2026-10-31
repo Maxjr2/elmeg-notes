@@ -1,6 +1,6 @@
 [project]
 site_url = "https://maxjr2.github.io/cs410-protocol/"
-site_name = "CS410 protocol notes"
+site_name = "CS410 and ICT88 notes"
 # site_description = "Your project description"
 # site_author = "Your name"
 
@@ -12,15 +12,29 @@ site_name = "CS410 protocol notes"
 
 nav = [
   { "Overview" = "index.md" },
-  { "Link layer" = "link-layer.md" },
-  { "Framing" = "framing.md" },
-  { "Messages" = "messages.md" },
-  { "Registration" = "registration.md" },
-  { "Calls" = "calls.md" },
-  { "Codeset 7" = "codeset7.md" },
-  { "Phone behaviour" = "phone-behaviour.md" },
-  { "Implementing a PBX" = "implementing.md" },
-  { "Open questions" = "open-questions.md" },
+  { "1. ISDN layers" = [
+    { "Link layer" = "link-layer.md" },
+    { "Framing" = "framing.md" },
+    { "Messages" = "messages.md" },
+  ] },
+  { "2. System phone (CS410)" = [
+    { "Registration" = "registration.md" },
+    { "Calls" = "calls.md" },
+    { "Codeset 7" = "codeset7.md" },
+    { "Phone behaviour" = "phone-behaviour.md" },
+  ] },
+  { "3. PBX (ICT88)" = [
+    { "Overview" = "pbx/index.md" },
+    { "Hardware" = "pbx/hardware.md" },
+    { "Serving a system phone" = "pbx/phone-service.md" },
+    { "Call processing" = "pbx/call-processing.md" },
+    { "Emulation and method" = "pbx/emulation.md" },
+  ] },
+  { "4. Building your own" = [
+    { "Implementing a PBX" = "implementing.md" },
+    { "Goals and status" = "project.md" },
+    { "Open questions" = "open-questions.md" },
+  ] },
 ]
 
 # extra_css = ["stylesheets/extra.css"]

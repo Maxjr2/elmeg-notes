@@ -25,6 +25,7 @@ On Linux, an ISDN stack such as mISDN is expected to handle steps 1 to 6 and del
 
 1. Wait for message `75` with `97 01 08 "PS130357"`.
 2. Reply with RELEASE COMPLETE: call reference of the phone with the flag set, cause, date/time, `97`, `01 08 "DW130958"`, `26 02 82 80`. See [Registration](registration.md).
+2a. The original PBX answers the long first form with a bare RELEASE COMPLETE (cause 81) and the short form with the full reply; answering both with the full reply is also accepted by the phone. See [Registration](registration.md#long-and-short-form-pbx-observed).
 3. Expect a STATUS (`7d`, cause 95, call state 0, `97 02 00`) a little later. Do not treat it as an error.
 4. Repeat for every new link establishment.
 

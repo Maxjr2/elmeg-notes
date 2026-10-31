@@ -75,6 +75,7 @@ The network answers SETUP ACKNOWLEDGE with the call reference flag set:
 
 ```
 08 01 81 0d 18 01 89  channel: B1 exclusive
+1e 02 81 88           progress: in-band information available (PBX-observed)
 ```
 
 Each key press then arrives as its own INFORMATION message with one digit, flag 0:
@@ -87,6 +88,16 @@ Each key press then arrives as its own INFORMATION message with one digit, flag 
 The digits appear on the phone's display as they are dialled. The phone does not send a "number complete" marker: **the network must decide when dialling is finished** (digit timeout, a known numbering plan, or `#`).
 
 When the user hangs up the phone sends `08 01 01 45 08 02 80 90` (DISCONNECT); the network answers RELEASE and the phone sends RELEASE COMPLETE. ✅ Tested.
+
+## A number that does not exist (PBX-observed)
+
+With the original PBX in its default configuration, dialling a number that is not an extension (for example `12`) ends with the network clearing the call:
+
+```
+08 01 81 45 08 02 81 83 1e 02 81 88      DISCONNECT, cause 3 (no route to destination), progress as above
+```
+
+The phone shows *Busy, on-hook please!*. When the user hangs up it sends RELEASE (`08 01 01 4d 08 02 80 90`) and the network answers RELEASE COMPLETE (`08 01 81 5a`). ✅ Tested, PBX-observed. While the phone is off hook the PBX also sends a broadcast FACILITY with the line state, see [Codeset 7](codeset7.md#broadcasts-pbx-observed).
 
 ## After dialling (not yet tested)
 
