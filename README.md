@@ -1,6 +1,6 @@
-# CS410 and ICT88 notes
+# Elmeg phone and PBX notes
 
-Reverse-engineered notes on the Elmeg CS410 ISDN system phone and the ICT88 PBX: the D-channel protocol, the phone behaviour, and the PBX hardware and behaviour. See [the protocol notes](https://maxjr2.github.io/cs410-protocol/).
+Reverse-engineered notes on the Elmeg CS410 ISDN system phone and the ICT88 PBX: the D-channel protocol, the phone behaviour, and the PBX hardware and behaviour. See [the notes](https://maxjr2.github.io/elmeg-notes/).
 
 - Written for interoperability with equipment the author owns. Not affiliated with, endorsed by, or connected to Elmeg, bintec elmeg, Funkwerk, Teldat or any successor. Product names are used only to say what the notes are about.
 - Contains no firmware, no firmware-derived code or listings and no vendor documentation. The notes describe messages and frames in the author's own words.
@@ -8,4 +8,4 @@ Reverse-engineered notes on the Elmeg CS410 ISDN system phone and the ICT88 PBX:
 
 License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
 
-Site: https://maxjr2.github.io/cs410-protocol/
+Site: https://maxjr2.github.io/elmeg-notes/

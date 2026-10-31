@@ -1,4 +1,4 @@
-# CS410 and ICT88 notes
+# Elmeg phone and PBX notes
 
 Notes on the **Elmeg CS410 system phone** and the **ICT88 PBX** it talks to: the ISDN D-channel protocol between them, how the phone behaves, and how the PBX is built and behaves.
 They exist so that other equipment (for example a small Linux box with an ISDN card) can serve a phone you own, and to document the hardware well enough that the PBX itself can be understood.
