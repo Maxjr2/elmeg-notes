@@ -12,6 +12,7 @@
 - **Phone's INFORMATION with codeset 7**: the code of each function key, and the exact content.
 - **Further registration fields**: the elements after the identification string in the phone's first message.
 - **Behaviour on real hardware.** Everything here was found with a software emulation and by reading message encoders; none of it has been checked on a real phone and PBX.
+- **Serial module traffic.** The phone repeatedly polls a serial peer (answering-machine or expansion module) and gets no reply; what that module answers is ❓ unknown.
 - **Power feed**, audio path and timing values of the real S0 bus.
 
 ## How to help
